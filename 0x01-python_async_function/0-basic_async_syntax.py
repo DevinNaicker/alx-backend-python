@@ -8,6 +8,7 @@ and returns the delay time.
 import asyncio
 import random
 
+
 async def wait_random(max_delay: int = 10) -> float:
     """Asynchronously wait for a random delay and return it."""
     delay = random.uniform(0, max_delay)
