@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Module that defines a regular function to create an asyncio Task for wait_random.
+Module that defines a regular function to create an asyncio Task for
+wait_random.
 """
 
 import asyncio
