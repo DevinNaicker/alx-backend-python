@@ -5,21 +5,8 @@ from unittest.mock import patch
 from parameterized import parameterized
 
 
-class GithubOrgClient:
-    """Mocked GithubOrgClient class for testing"""
-    def __init__(self, org_name: str) -> None:
-        self.org_name = org_name
-
-    @property
-    def org(self) -> dict:
-        """Returns the organization details"""
-        from utils import get_json  # This will be mocked during tests
-        url = f"https://api.github.com/orgs/{self.org_name}"
-        return get_json(url)
-
-
 class TestGithubOrgClient(unittest.TestCase):
-    """Tests for GithubOrgClient"""
+    """Tests for the GithubOrgClient class"""
 
     @parameterized.expand([
         ("google",),
@@ -28,6 +15,7 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('client.get_json', return_value={"login": "mocked_org"})
     def test_org(self, org_name, mock_get_json):
         """Test that GithubOrgClient.org returns the correct value"""
+        from client import GithubOrgClient
         client = GithubOrgClient(org_name)
         org = client.org
         expected_url = f"https://api.github.com/orgs/{org_name}"
